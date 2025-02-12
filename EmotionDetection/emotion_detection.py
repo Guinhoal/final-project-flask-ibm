@@ -21,11 +21,10 @@ def sentiment_analyzer(text_to_analyse):
 
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
 
-    return {
+    return json.dumps({
         "text": text_to_analyse,
-        "emotion_scores": emotion_scores,
-        "dominant_emotion": dominant_emotion
-    }
+        "dominantion": dominant_emotion
+    })
 
 def sentiment_analyzer_with_points(text_to_analyse):
     url = 'https://sn-watson-sentiment-bert.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/SentimentPredict'
