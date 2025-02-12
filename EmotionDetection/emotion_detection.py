@@ -56,7 +56,6 @@ def sentiment_analyzer(text_to_analyse):
         "positive": positive,
         "negative": negative,
         "neutral": neutral,
-        "score": score,
         "dominant_emotion": dominant_emotion
     })
 
