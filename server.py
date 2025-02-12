@@ -1,8 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import json
-from EmotionDetection import sentiment_analyzer
+from EmotionDetection.emotion_detection import sentiment_analyzer
 
 app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route("/emotionDetector")
 def emotionDetector():
