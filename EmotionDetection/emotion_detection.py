@@ -49,7 +49,7 @@ def sentiment_analyzer(text_to_analyse):
     emotion_scores["sadness"] = negative * sadness_base
 
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
-    emotion_scores["dominance"] = dominant_emotion
+    emotion_scores["dominantion"] = dominant_emotion
     
     return json.dumps({
         "text": text_to_analyse,
