@@ -55,7 +55,7 @@ def sentiment_analyzer(text_to_analyse):
 
     return json.dumps(emotion_scores)
 
-def sentimen_analyzer_whith_points(text_to_analyse):
+def sentiment_analyzer_with_points(text_to_analyse):
     url = 'https://sn-watson-sentiment-bert.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/SentimentPredict'
     myobj = { "raw_document": { "text": text_to_analyse } }
     header = {"grpc-metadata-mm-model-id": "sentiment_aggregated-bert-workflow_lang_multi_stock"}
@@ -64,4 +64,4 @@ def sentimen_analyzer_whith_points(text_to_analyse):
     positive = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['positive']
     negative = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['negative']
     neutral = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['neutral']
-    return "positive: " + str(positive) + " negative: " + str(negative) + " neutral: " + str(neutral)
+    return text_to_analyse + "/n" + "positive: " + str(positive) + " negative: " + str(negative) + " neutral: " + str(neutral)

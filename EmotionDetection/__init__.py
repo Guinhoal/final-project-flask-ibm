@@ -1,1 +1,1 @@
-from .emotion_detection import sentiment_analyzer
+from .emotion_detection import sentiment_analyzer, sentiment_analyzer_with_points
