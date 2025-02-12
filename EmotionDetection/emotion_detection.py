@@ -63,12 +63,14 @@ def sentiment_analyzer_with_points(text_to_analyse):
     formatted_response = json.loads(response.text)
     positive = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['positive']
     negative = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['negative']
-    neutral = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['neutral']
+    score = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['score']
+    neutral = formatted_response['documentSentiment'][score]
     return json.dumps({
         "text": text_to_analyse,
         "positive": positive,
         "negative": negative,
-        "neutral": neutral
+        "neutral": neutral,
+        "score": score
     })
 
 def sentiment_normal(text_to_analyse):
