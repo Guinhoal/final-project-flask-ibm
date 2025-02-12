@@ -10,6 +10,6 @@ fear = json.loads(sentiment_normal("I am really afraid that this will happen")) 
 
 ##print(joy)
 print(anger)
-##print(disgust)
-##print(sadness)
+print(disgust)
+print(sadness)
 ##print(fear)
