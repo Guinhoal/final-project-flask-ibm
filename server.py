@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import json
-from EmotionDetection.emotion_detection import sentiment_analyzer
+from EmotionDetection.emotion_detection import sentiment_analyzer, sentiment_analyzer_total
 
 app = Flask(__name__)
 
@@ -10,8 +10,8 @@ def index():
 
 @app.route("/emotionDetector")
 def emotionDetector():
-    text = request.args.get('text')
-    response = sentiment_analyzer(text)
+    text = request.args.get('textToAnalyze')
+    response = sentiment_analyzer_total(text)
     response_json = json.loads(response)
     
     formatted_response = (
