@@ -12,25 +12,52 @@ def sentiment_analyzer(text_to_analyse):
     neutral = sentiments["neutral"]
     negative = sentiments["negative"]
     emotion_scores = {
-        "joy": positive * 1.0,
-        "anger": negative * 0.7,
-        "disgust": negative * 0.5,
-        "fear": negative * 0.3,
-        "sadness": negative * 0.4,
+        "anger": 0.0,
+        "disgust": 0.0,
+        "fear": 0.0,
+        "joy": 0.0,
+        "sadness": 0.0
     }
 
-    if neutral > 0.2:
-        emotion_scores["anger"] *= 0.5
-        emotion_scores["disgust"] *= 0.5
-        emotion_scores["fear"] *= 0.5
-        emotion_scores["sadness"] *= 0.5
+    emotion_scores["joy"] = max(0, positive - (neutral * 0.5) - (negative * 0.3))
+    
+    anger_base = 0.4
+    disgust_base = 0.2
+    fear_base = 0.2
+    sadness_base = 0.2
+    
+    if negative > positive:
+        anger_base = 0.4
+        disgust_base = 0.2
+        fear_base = 0.2
+        sadness_base = 0.2
+    
+    if neutral > 0.05:
+        disgust_base += neutral * 2  
+        fear_base -= neutral  
+        sadness_base += neutral * 1.5  
+    
+    total = anger_base + disgust_base + fear_base + sadness_base
+    anger_base /= total
+    disgust_base /= total
+    fear_base /= total
+    sadness_base /= total
+
+    emotion_scores["anger"] = negative * anger_base
+    emotion_scores["disgust"] = negative * disgust_base
+    emotion_scores["fear"] = negative * fear_base
+    emotion_scores["sadness"] = negative * sadness_base
 
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
-    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
-
+    emotion_scores["dominance"] = dominant_emotion
+    
     return json.dumps({
         "text": text_to_analyse,
-        "dominantion": dominant_emotion
+        "positive": positive,
+        "negative": negative,
+        "neutral": neutral,
+        "score": score,
+        "dominant_emotion": dominant_emotion
     })
 
 def sentiment_analyzer_with_points(text_to_analyse):
