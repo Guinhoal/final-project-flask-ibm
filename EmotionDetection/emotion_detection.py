@@ -61,7 +61,7 @@ def sentiment_analyzer_with_points(text_to_analyse):
     header = {"grpc-metadata-mm-model-id": "sentiment_aggregated-bert-workflow_lang_multi_stock"}
     response = requests.post(url, json=myobj, headers=header)
     formatted_response = json.loads(response.text)
-    positive = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['positive']
-    negative = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['negative']
-    neutral = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['neutral']
+    positive = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['positive']
+    negative = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['negative']
+    neutral = formatted_response['documentSentiment']['sentimentMentions'][0]['sentimentprob']['neutral']
     return text_to_analyse + "/n" + "positive: " + str(positive) + " negative: " + str(negative) + " neutral: " + str(neutral)
