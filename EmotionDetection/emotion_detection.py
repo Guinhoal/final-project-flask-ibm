@@ -17,7 +17,7 @@ def sentiment_analyzer(text_to_analyse):
             "fear": (negative * 0.98712045) + (neutral * 0.011347773) + (positive * 0.0008677552),
             "joy": (negative * 0.0037017628) + (neutral * 0.018675389) + (positive * 0.9776229),
             "sadness": (negative * 0.98712095) + (neutral * 0.011306773) + (positive * 0.0008677552) 
-        }   
+        } 
 
 
 
