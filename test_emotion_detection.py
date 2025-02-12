@@ -8,4 +8,8 @@ disgust = json.loads(sentiment_analyzer("I feel disgusted just hearing about thi
 sadness = json.loads(sentiment_analyzer("I am so sad about this")) # Expected output: "sadness"
 fear = json.loads(sentiment_analyzer("I am really afraid that this will happen")) # Expected output: "fear"
 
-print("Dominante ", joy[dominant])
+print("Dominante ", joy["dominantion"], "  expected joy")
+print("Dominante ", anger["dominantion"], "  expected anger")
+print("Dominante ", disgust["dominantion"], "  expected disgust")
+print("Dominante ", sadness["dominantion"],  "  expected sadness")
+print("Dominante ", fear["dominantion"],  "  expected fear")

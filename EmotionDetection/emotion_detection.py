@@ -54,3 +54,14 @@ def sentiment_analyzer(text_to_analyse):
     emotion_scores["dominantion"] = dominant_emotion
 
     return json.dumps(emotion_scores)
+
+def sentimen_analyzer_whith_points(text_to_analyse):
+    url = 'https://sn-watson-sentiment-bert.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/SentimentPredict'
+    myobj = { "raw_document": { "text": text_to_analyse } }
+    header = {"grpc-metadata-mm-model-id": "sentiment_aggregated-bert-workflow_lang_multi_stock"}
+    response = requests.post(url, json=myobj, headers=header)
+    formatted_response = json.loads(response.text)
+    positive = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['positive']
+    negative = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['negative']
+    neutral = formatted_response['documentSentiment']['sentimentMentions'][1]['sentimentprob']['neutral']
+    return "positive: " + str(positive) + " negative: " + str(negative) + " neutral: " + str(neutral)
