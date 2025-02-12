@@ -12,12 +12,13 @@ def sentiment_analyzer(text_to_analyse):
     neutral = sentiments["neutral"]
     negative = sentiments["negative"]
     emotion_scores = {
-        "anger": negative * 0.7 + neutral * 160 + positive * 500,
-        "disgust": negative * 0.7 + neutral * 160 + positive * 500,
-        "fear": negative * 0.7 + neutral * 160 + positive * 500,
-        "joy": negative * 0.7 + neutral * 160 + positive * 500,
-        "sadness":negative * 0.7 + neutral * 160 + positive * 500
-    }
+            "anger": (negative * 0.98656278) + (neutral *0.03707628) + (positive * 0.0080474),
+            "disgust": (negative * 0.9871378) + (neutral * 0.009826719) + (positive * 0.00045553094),
+            "fear": (negative * 0.98712045) + (neutral * 0.011347773) + (positive * 0.0008677552),
+            "joy": (negative * 0.0037017628) + (neutral * 0.018675389) + (positive * 0.9776229),
+            "sadness": (negative * 0.98712095) + (neutral * 0.011306773) + (positive * 0.0008677552) 
+        }   
+
 
 
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
